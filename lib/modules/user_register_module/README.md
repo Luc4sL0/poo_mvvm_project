@@ -1,8 +1,73 @@
+# Dependências de Projeto
+
+---
+
+## Criando o Projeto no Firebase
+1. Acesse o [Firebase](https://firebase.google.com/) e crie um novo projeto.
+ 
+2. Depois, vá para a aba **Criação > Firestore Database** e clique no botão **Criar banco de dados**.
+   
+3. Dê um nome e um local para o novo banco de dados. Na aba **Regras de segurança**  marque a opção **Iniciar no modo de teste** e conclua a criação.
+
+---
+
+## Conectando o Firebase ao Projeto Flutter
+1. Abra o terminal no Android Studio e execute os seguintes comandos na ordem indicada:
+```bash
+npm install -g firebase-tools
+```
+Esse comando deve ser executado apenas se você não tiver a biblioteca de ferramentas do firebase baixada. A finalidade desse comando é instalar as ferramentas do firebase no seu projeto. 
+
+```bash
+firebase login
+```
+Por meio do comando `firebase login` será possível conectar sua conta do Google com o projeto.
+
+```bash
+flutter pub global activate flutterfire_cli
+```
+Esse comando ativa o executável de configuração do firebase com seu projeto.
+
+```bash
+flutterfire configure
+```
+O comando `flutterfire configure` inicializa o executável `flutterfire` no modo de configuração. Dessa maneira, é possível sincronizar um novo ou já existente projeto no Firebase com qualquer projeto Flutter. Nessa etapa, será necessário responder uma série de perguntas atreladas as configurações do projeto.
+
+```bash
+flutter pub add firebase_core
+```
+Esse comando adiciona a biblioteca `firebase_core` no projeto.
+```bash
+flutter pub add cloud_firestore
+```
+Esse comando adiciona a biblioteca `cloud_firestore` no projeto.
+```bash
+flutter pub add firebase_crashlytics
+```
+Esse comando adiciona a biblioteca `firebase_crashlytics` no projeto.
+```bash
+flutter pub add file_picker
+```
+Esse comando adiciona a biblioteca `file_picker` no projeto.
+```bash
+flutter pub add carousel_slider
+```
+Esse comando adiciona a biblioteca `carousel_slider` no projeto.
+
+---
+
+## Configurando o Projeto Flutter
+
+1. Delete o arquivo `main.dart` que está no seu projeto recém criado.
+   
+2. Clone todo o repositório dentro da pasta `lib`, contudo certifique-se que os arquivos e pastas do repositório atual estão diretamente na pasta `lib`, ou seja, sem a presença da subpasta `project_dependencies`.
+
+---
+
 # Módulo de Registro e Acesso de Usuários
 
 Este repositório disponibiliza um módulo dedicado a lidar com questões relacionadas ao cadastro e acesso de contas de usuários em aplicações mobile. 
 
-> **Atenção:** Esse módulo depende diretamente do repositório [Dependências de Projeto](https://github.com/bondroot-solutions/ProjectDependencies).
 
 > **Nota:** Os arquivos presentes aqui não são suficientes para o funcionamento completo do módulo, visto que são necessárias diversas configurações para garantir o funcionamento ideal do sistema. Essas configurações são explicadas abaixo.
 
