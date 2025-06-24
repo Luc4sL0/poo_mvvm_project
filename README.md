@@ -1,16 +1,95 @@
-# poo_project
 
-A new Flutter project.
+# POO MVVM Project
 
-## Getting Started
+Este projeto foi desenvolvido como parte do trabalho da disciplina de Programação Orientada a Objetos, com o objetivo de demonstrar a aplicação do padrão arquitetural **MVVM (Model-View-ViewModel)** em uma aplicação Flutter integrada com Firebase.
 
-This project is a starting point for a Flutter application.
+---
 
-A few resources to get you started if this is your first Flutter project:
+## Sobre o Projeto
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+A aplicação consiste em um sistema de autenticação que permite login e registro de usuários utilizando e-mail e senha, além da autenticação via Google. 
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+O foco principal é a aplicação dos conceitos do padrão MVVM para garantir uma separação clara das responsabilidades, utilizando:
+
+- **Model**: Representa as estruturas e dados da aplicação.
+- **ViewModel**: Gerencia a lógica de apresentação, estado e comunicação entre Model e View.
+- **Repository**: Responsável pela interação com fontes de dados externas (Firebase).
+- **View**: Interfaces visuais construídas com Flutter para interação do usuário.
+
+---
+
+## Tecnologias Utilizadas
+
+- Flutter
+- Firebase Authentication
+- Google Sign-In
+- MVVM Architecture
+
+---
+
+## Funcionalidades
+
+- Registro de usuários por e-mail e senha
+- Login por e-mail e senha
+- Login via Google
+- Gerenciamento de estado via ViewModel
+- Separação clara entre camadas (Model, ViewModel, Repository, View)
+
+---
+
+## Como Rodar o Projeto
+
+1. Clone este repositório:
+
+   ```bash
+   git clone https://github.com/Luc4sL0/poo_mvvm_project.git
+   ````
+
+2. Acesse a pasta do projeto:
+
+   ```bash
+   cd poo_mvvm_project
+   ```
+
+3. Instale as dependências do Flutter:
+
+   ```bash
+   flutter pub get
+   ```
+
+4. Configure seu projeto Firebase (google-services.json para Android, GoogleService-Info.plist para iOS).
+
+5. Execute o app:
+
+   ```bash
+   flutter run
+   ```
+
+---
+
+## Estrutura do Projeto
+
+* **lib/**: Código fonte principal
+
+  * **models/**: Definições das entidades do domínio
+  * **viewmodels/**: Lógica e estado da interface
+  * **repositories/**: Comunicação com Firebase
+  * **views/**: Telas e widgets Flutter
+
+---
+
+## Contribuição
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests.
+
+---
+
+## Licença
+
+Este projeto é para fins acadêmicos e não possui licença específica.
+
+---
+
+- **Autor:** Lucas Lopes Baroni
+- **Disciplina:** Programação Orientada a Objetos
+- **Universidade:** Universidade do Vale do Itajaí
