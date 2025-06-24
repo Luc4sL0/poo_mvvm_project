@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "505799470166",
+    "project_id": "poo-mvvm",
+    "storage_bucket": "poo-mvvm.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:505799470166:android:b9f7a161c85efea1a7dff7",
+        "android_client_info": {
+          "package_name": "com.example.poo_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBj7j3R3V4xhx5FbC8ysDWqtNl-0ItzErk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
