@@ -67,17 +67,6 @@ O foco principal é a aplicação dos conceitos do padrão MVVM para garantir um
 
 ---
 
-## Estrutura do Projeto
-
-* **lib/**: Código fonte principal
-
-  * **models/**: Definições das entidades do domínio
-  * **viewmodels/**: Lógica e estado da interface
-  * **repositories/**: Comunicação com Firebase
-  * **views/**: Telas e widgets Flutter
-
----
-
 ## Contribuição
 
 Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests.
