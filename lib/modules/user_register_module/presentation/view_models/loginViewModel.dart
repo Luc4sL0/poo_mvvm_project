@@ -8,7 +8,7 @@ import '../../repositories/auth_repository.dart';
 
 class LoginViewModel extends BaseViewModel{
 
-  final _authService = AuthService();
+  final _auth = AuthRepository();
 
   /* Título: Verifica se os campos obrigatórios foram preenchidos.
   *
@@ -19,12 +19,9 @@ class LoginViewModel extends BaseViewModel{
   *   - true: os campos de texto não estão vazios.
   *   - false: pelo menos algum dos campos de texto estão vazios.
   */
-  bool verifyFields({
-    required TextEditingController emailCon,
-    required TextEditingController passwordCon
-  }){
+  bool _verifyFields({required List<TextEditingController> textFields}){
     final fieldsValidator = FieldsValidator();
-    bool isValid = !fieldsValidator.fieldsAreEmpty([emailCon, passwordCon]);
+    bool isValid = !fieldsValidator.fieldsAreEmpty(textFields);
     if(!isValid) setMessage(data: fieldsValidator.errorInfo!);
     return isValid;
   }
@@ -36,14 +33,14 @@ class LoginViewModel extends BaseViewModel{
   * passados como parâmetro para a função responsável por realizar a
   * comunicação com os sistemas de login do Firebase.
   */
-  void loginDefault({
+  Future<void> loginDefault({
     required BuildContext context,
     required TextEditingController emailCon,
     required TextEditingController passwordCon
   }) async {
-    if (verifyFields(emailCon: emailCon, passwordCon: passwordCon)){
+    if (_verifyFields(textFields: [emailCon,passwordCon])){
       await tryCatchWrapper(() async {
-        await _authService.loginWithEmailPassword(emailCon.text, passwordCon.text);
+        await _auth.loginWithEmailPassword(emailCon.text, passwordCon.text);
         final userModel = Provider.of<UserModel>(context, listen: false);
         userModel.updateEmail(emailCon.text);
       });
@@ -57,9 +54,9 @@ class LoginViewModel extends BaseViewModel{
   * "loginWithGoogle" é executada e fornece comunicação entre os recursos
   * da biblioteca "google_sign_in" e o Firebase.
   */
-  void loginGoogle({required BuildContext context}) async {
-    await tryCatchWrapper(() async {
-      UserCredential data = await _authService.loginWithGoogle();
+  Future<void> loginGoogle({required BuildContext context}) async {
+    tryCatchWrapper(() async {
+      UserCredential data = await _auth.loginWithGoogle();
       if(data.user != null && data.user!.email != null){
         final userModel = Provider.of<UserModel>(context, listen: false);
         userModel.updateEmail(data.user!.email!);

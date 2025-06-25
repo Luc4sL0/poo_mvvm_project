@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:poo_project/modules/user_register_module/presentation/view_models/userAccountViewModel.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../core/CORE_AppTexts.dart';
 import '../../../../core/baseViewModel.dart';
 import '../../../../core/style/general_styles.dart';
-import '../../../../core/widgets/buttons/drawerButton_card.dart';
 import '../../../../core/widgets/buttons/myButton_card.dart';
+import '../../../../core/widgets/dialogs/action_dialog.dart';
 import '../../../../core/widgets/sections/myDivider_card.dart';
 import '../../../../core/widgets/sections/section_card.dart';
 import '../../constants/URM_AppTexts.dart';
-import '../view_models/forgotPasswordViewModel.dart';
 
 
 class UserAccountScreen extends StatefulWidget {
@@ -30,9 +31,9 @@ class _UserAccountScreenState extends State<UserAccountScreen> {
         foregroundColor: GeneralStyle.themeInversedBackgroundColor ,
       ),
       body: SingleChildScrollView(
-        child: Consumer<ForgotPasswordViewModel>(
-          builder: (context, forgotPassViewModel, child) {
-            BaseViewsMethods.showViewModelsMessage(forgotPassViewModel, context);
+        child: Consumer<UserAccountViewModel>(
+          builder: (context, userAccountViewModel, child) {
+            BaseViewsMethods.showViewModelsMessage(userAccountViewModel, context);
             return Padding(
               padding: const EdgeInsets.all(7.5),
               child: Column(
@@ -48,7 +49,7 @@ class _UserAccountScreenState extends State<UserAccountScreen> {
                     style: GeneralStyle.headingTextStyle,
                   ),
                   Text(
-                    forgotPassViewModel.authService.auth.currentUser!.email!,
+                    userAccountViewModel.loadUserData(context).email,
                     style: GeneralStyle.descriptionTextStyle,
                   ),
                   if(widget.customContent != null)
@@ -64,27 +65,35 @@ class _UserAccountScreenState extends State<UserAccountScreen> {
                       ],
                     ),
                   MyDividerCard(),
-                  SectionCard(
-                    icon: Icons.lock,
-                    title: URM_AppTexts.account_UAscreen_section_securityTitle,
-                  ),
-                  const SizedBox(height: 10),
-                  DrawerButtonCard(
-                    onPressed: () => forgotPassViewModel.passwordReset(
-                      forgotPassViewModel.authService.auth.currentUser!.email!,
-                    ),
-                    icon: Icons.password,
-                    title: URM_AppTexts.account_UAscreen_drawer_changePassTitle,
-                    description: URM_AppTexts.account_UAscreen_drawer_changePassDescription,
-                  ),
-                  MyDividerCard(),
                   MyButtonCard(
                     onPressedAction: () async {
-                      await forgotPassViewModel.authService.signOut();
+                      await userAccountViewModel.logout();
                       Navigator.pop(context);
                     },
                     icon: Icons.logout,
                     title: URM_AppTexts.account_UAscreen_button_logout,
+                  ),
+                  const SizedBox(height: 7.5),
+                  MyButtonCard(
+                    onPressedAction: () async {
+                      showActionDialog(
+                        ActionDialogContent(
+                          title: URM_AppTexts.deleteAccount_DAdialog_title,
+                          description: URM_AppTexts.deleteAccount_DAdialog_message,
+                          cancelButton: CORE_AppTexts.cancelTitle,
+                          actionButton: CORE_AppTexts.deleteTitle,
+                          actionButtonIcon: Icons.delete_forever,
+                          actionFunc: () async {
+                            bool status = await userAccountViewModel.destroyAccount();
+                            if(status) Navigator.of(context).pop();
+                          },
+                        ),
+                        context,
+                      );
+                    },
+                    icon: Icons.delete_forever,
+                    title: URM_AppTexts.account_UAscreen_button_deleteAccount,
+                    backgroundColor: Colors.red,
                   ),
                 ],
               ),

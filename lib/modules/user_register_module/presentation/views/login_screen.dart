@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../core/baseViewModel.dart';
 import '../../../../core/style/general_styles.dart';
 import '../../../../core/widgets/buttons/myButton_card.dart';
 import '../../../../core/widgets/fields/myTextField_card.dart';
-import '../../../../core/widgets/info/messageBar_card.dart';
 import '../../constants/URM_AppTexts.dart';
 import '../view_models/loginViewModel.dart';
 import '../widgets/passwordTextField_card.dart';
@@ -29,17 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
       backgroundColor: GeneralStyle.themeMasterBackgroundColor,
       body: Consumer<LoginViewModel>(
         builder: (context, loginViewModel, child) {
-          if (loginViewModel.messageInfo != null) {
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              showMessageBar(
-                context: context,
-                error: loginViewModel.messageInfo!['error'],
-                icon: loginViewModel.messageInfo!['icon'],
-                content: loginViewModel.messageInfo!['content'],
-              );
-              loginViewModel.clearError();
-            });
-          }
+          BaseViewsMethods.showViewModelsMessage(loginViewModel, context);
           return Center(
             child: SingleChildScrollView(
               child: Column(

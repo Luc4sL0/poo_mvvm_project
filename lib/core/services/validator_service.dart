@@ -24,7 +24,6 @@ class Validator{
 
 class FieldsValidator{
 
-  static const String invalidFields_images = 'Faça o upload das imagens obrigatórias para continuar';
   static const String invalidFields_textFields = 'Preencha os campos de textos obrigatórios (*)!';
   static const String invalidFields_textFields_numeric = 'O contéudo desse campo deve ser obrigatoriamente numérico.';
   static const String invalidFields_emailField = 'O email inserido é inválido ou está mal formatado!';

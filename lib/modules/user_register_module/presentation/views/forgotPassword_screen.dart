@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../core/CORE_AppTexts.dart';
 import '../../../../core/baseViewModel.dart';
 import '../../../../core/style/general_styles.dart';
 import '../../../../core/widgets/buttons/myButton_card.dart';
 import '../../../../core/widgets/fields/myTextField_card.dart';
-import '../../../../core/widgets/info/messageBar_card.dart';
 import '../../constants/URM_AppTexts.dart';
 import '../view_models/forgotPasswordViewModel.dart';
 
@@ -72,21 +70,11 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 const SizedBox(height: 30),
                 MyButtonCard(
                   onPressedAction: () async{
-                    if (emailController.text.isNotEmpty) {
-                      bool status = await forgotPasswordViewModel.passwordReset(
-                        emailController.text,
-                      );
-                      if(status){
-                        Navigator.pop(context);
-                      }
-                    }
-                    else {
-                      showMessageBar(
-                        context: context,
-                        error: true,
-                        icon: Icons.edit,
-                        content: CORE_AppTexts.invalidFields_errorMessage,
-                      );
+                    bool status = await forgotPasswordViewModel.passwordReset(
+                      emailController,
+                    );
+                    if(status){
+                      Navigator.pop(context);
                     }
                   },
                   icon: Icons.send,

@@ -62,4 +62,7 @@ class URM_AppTexts{
   static const String deleteAccount_DAdialog_message = 'Você tem certeza que deseja excluir permanentemente sua conta de usuário do aplicativo? Todos os seus dados serão perdidos.';
   static const String deleteAccount_DAdialog_subscriptionError = 'Não é possível excluir uma conta com assinaturas ativas!';
 
+  static const String logoutAccount_message = 'Usuário desconectado.';
+  static const String deleteAccount_message = 'Conta excluída. :(';
+
 }

@@ -1,6 +1,6 @@
 import 'package:poo_project/core/baseViewModel.dart';
 
-// Classe que lida com o usuário.
+// Modelo que lida com o usuário.
 class UserModel extends BaseViewModel{
   String? _email;
 

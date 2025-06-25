@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:poo_project/modules/user_register_module/models/user_model.dart';
+import 'package:poo_project/modules/user_register_module/presentation/view_models/userAccountViewModel.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
@@ -23,6 +24,8 @@ void main() async {
         ChangeNotifierProvider(create: (_) => LoginViewModel()),
         ChangeNotifierProvider(create: (_) => SignUpViewModel()),
         ChangeNotifierProvider(create: (_) => ForgotPasswordViewModel()),
+        ChangeNotifierProvider(create: (_) => UserAccountViewModel()),
+
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

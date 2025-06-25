@@ -9,7 +9,7 @@ import '../../constants/URM_AppTexts.dart';
 
 class SignUpViewModel extends BaseViewModel{
 
-  final _auth = AuthService();
+  final _auth = AuthRepository();
 
   /* Título: Verifica se os campos obrigatórios foram preenchidos.
   *
@@ -20,7 +20,7 @@ class SignUpViewModel extends BaseViewModel{
   *   - true: os campos de texto não estão vazios.
   *   - false: pelo menos algum dos campos de texto estão vazios.
   */
-  bool verifyFields({required List<TextEditingController> textFields}){
+  bool _verifyFields({required List<TextEditingController> textFields}){
     final FieldsValidator fieldsValidator = FieldsValidator();
     bool status = !fieldsValidator.fieldsAreEmpty(textFields);
     if(fieldsValidator.errorInfo != null){
@@ -36,6 +36,10 @@ class SignUpViewModel extends BaseViewModel{
   * validados e posteriormente passados como parâmetro para a função
   * responsável por realizar a comunicação com os sistemas de registro
   * do Firebase.
+  *
+  * @return:
+  *   - true: conta criada com êxito.
+  *   - false: erro durante a criação da conta.
   */
   Future<bool> register({
     required BuildContext context,
@@ -44,7 +48,7 @@ class SignUpViewModel extends BaseViewModel{
     required TextEditingController confirmPassCon
   }) async {
     bool status = false;
-    if(verifyFields(textFields: [emailCon, passCon, confirmPassCon])){
+    if(_verifyFields(textFields: [emailCon, passCon, confirmPassCon])){
       if(passCon.text == confirmPassCon.text){
         await tryCatchWrapper(() async{
           await _auth.signUpWithEmailPassword(emailCon.text, passCon.text);

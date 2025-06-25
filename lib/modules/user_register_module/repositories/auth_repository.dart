@@ -7,7 +7,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 * Descrição: Essa classe possui funções e variáveis que são dedicadas
 * para processos de registro e acesso de contas de usuários.
 */
-class AuthService {
+class AuthRepository {
 
   // Mensagens
   static const String authService_authError_invalidCredential = 'O email ou a senha estão incorretos.';
